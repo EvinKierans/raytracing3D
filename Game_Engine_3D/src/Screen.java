@@ -31,7 +31,7 @@ public class Screen {
             double cameraX = 2 * x / (double)(width) -1;
             double rayDirX = camera.xDir + camera.xPlane * cameraX;
             double rayDirY = camera.yDir + camera.yPlane * cameraX;
-            //Map position
+            //longMap position
             int mapX = (int)camera.xPos;
             int mapY = (int)camera.yPos;
             //length of ray from current position to next x or y-side

@@ -1,3 +1,5 @@
+import Maps.longMap;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -10,8 +12,6 @@ public class Game extends JFrame implements Runnable {
     private static final long serialVersionUID = 1L;
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int WIDTH = (int) screenSize.getWidth(), HEIGHT = (int) screenSize.getHeight();
-    public int mapWidth = 15;
-    public int mapHeight = 15;
     private Thread thread;
     private boolean running;
     private BufferedImage image;
@@ -20,24 +20,7 @@ public class Game extends JFrame implements Runnable {
     public Camera camera;
     public Screen screen;
     private int fps;
-    public static int[][] map =
-            {
-                    {1,1,1,1,1,1,1,1,2,2,2,2,2,2,2},
-                    {1,0,0,0,0,0,0,0,2,0,0,0,0,0,2},
-                    {1,0,3,3,3,3,3,0,0,0,0,0,0,0,2},
-                    {1,0,3,0,0,0,3,0,2,0,0,0,0,0,2},
-                    {1,0,3,0,0,0,3,0,2,2,2,0,2,2,2},
-                    {1,0,3,0,0,0,3,0,2,0,0,0,0,0,2},
-                    {1,0,3,3,0,3,3,0,2,0,0,0,0,0,2},
-                    {1,0,0,0,0,0,0,0,2,0,0,0,0,0,2},
-                    {1,1,1,1,1,1,1,1,4,4,4,0,4,4,4},
-                    {1,0,0,0,0,0,1,4,0,0,0,0,0,0,4},
-                    {1,0,0,0,0,0,1,4,0,0,0,0,0,0,4},
-                    {1,0,0,0,0,0,1,4,0,3,3,3,3,0,4},
-                    {1,0,0,0,0,0,1,4,0,3,3,3,3,0,4},
-                    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
-                    {1,1,1,1,1,1,1,4,4,4,4,4,4,4,4}
-            };
+
     public Game() {
         thread = new Thread(this);
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -47,12 +30,12 @@ public class Game extends JFrame implements Runnable {
         textures.add(Texture.brick);
         textures.add(Texture.bluestone);
         textures.add(Texture.stone);
-        camera = new Camera(4.5, 4.5, 1, 0, 0, -.66);
-        screen = new Screen(map, mapWidth, mapHeight, textures, WIDTH, HEIGHT);
+        camera = new Camera(1.5, 1.5, 1, 0, 0, -0.66);
+        screen = new Screen(longMap.map, longMap.mapWidth, longMap.mapHeight, textures, WIDTH, HEIGHT);
         addKeyListener(camera);
         setSize(WIDTH, HEIGHT);
         setResizable(false);
-        setTitle("3D Engine");
+        setTitle("Extreme Racer 9000");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.black);
         setLocationRelativeTo(null);
@@ -123,7 +106,7 @@ public class Game extends JFrame implements Runnable {
 
     public void tick() {
         screen.update(camera, pixels);
-        camera.update(map);
+        camera.update(longMap.map);
 
     }
 
