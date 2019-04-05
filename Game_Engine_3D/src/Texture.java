@@ -26,8 +26,8 @@ public class Texture {
         }
     }
 
-    public static Texture wood = new Texture("res/wood.png", 64);
-    public static Texture brick = new Texture("res/redbrick.png", 64);
-    public static Texture bluestone = new Texture("res/bluestone.png", 64);
-    public static Texture stone = new Texture("res/greystone.png", 64);
+    public static Texture wood = new Texture("Game_Engine_3D/res/wood.png", 64);
+    public static Texture brick = new Texture("Game_Engine_3D/res/redbrick.png", 64);
+    public static Texture bluestone = new Texture("Game_Engine_3D/res/bluestone.png", 64);
+    public static Texture stone = new Texture("Game_Engine_3D/res/greystone.png", 64);
 }
