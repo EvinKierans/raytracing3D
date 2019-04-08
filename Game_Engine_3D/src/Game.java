@@ -1,3 +1,4 @@
+import Maps.TwoRoomMap;
 import Maps.longMap;
 
 import java.awt.*;
@@ -31,7 +32,8 @@ public class Game extends JFrame implements Runnable {
         textures.add(Texture.bluestone);
         textures.add(Texture.stone);
         camera = new Camera(1.5, 1.5, 1, 0, 0, -0.66);
-        screen = new Screen(longMap.map, longMap.mapWidth, longMap.mapHeight, textures, WIDTH, HEIGHT);
+        //Change map here
+        screen = new Screen(TwoRoomMap.map, TwoRoomMap.mapWidth, TwoRoomMap.mapHeight, textures, WIDTH, HEIGHT);
         addKeyListener(camera);
         setSize(WIDTH, HEIGHT);
         setResizable(false);
@@ -61,16 +63,22 @@ public class Game extends JFrame implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
-        bs.show();
 
-        //FPS counter - not working
-//        g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
-//        g.setFont(new Font("Verdanna", 1, 16));
-//        g.setColor(Color.WHITE);
-//        g.drawString( fps+" FPS", 10,20);
-//        g.dispose();
-//        bs.show();
+        //Drawing the screen
+        g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
+
+        //Drawing crosshair
+        g.setFont(new Font("Verdanna", 1, 32));
+        g.setColor(Color.WHITE);    //crosshair colour
+        g.drawString("+", getWidth()/2, getHeight()/2);
+
+        //FPS counter
+        g.setFont(new Font("Verdanna", 1, 16));
+        g.setColor(Color.GREEN);    //FPS counter colour
+        g.drawString( fps+" FPS", 10,40);
+
+        //Showing the bufferStrategy
+        bs.show();
     }
     public void run() {
         long lastTime = System.nanoTime();
