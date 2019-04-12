@@ -37,7 +37,7 @@ public class Game extends JFrame implements Runnable {
         addKeyListener(camera);
         setSize(WIDTH, HEIGHT);
         setResizable(false);
-        setTitle("Extreme Racer 9000");
+        setTitle("What am I doing");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.black);
         setLocationRelativeTo(null);
@@ -82,8 +82,8 @@ public class Game extends JFrame implements Runnable {
     }
     public void run() {
         long lastTime = System.nanoTime();
-        double tickrate = 64.0;
-        final double ns = 1000000000.0 / tickrate;//60 times per second
+        double tickrate = 100.0;
+        final double ns = 1000000000.0 / tickrate;//100 times per second
         double delta = 0;
         long timer = System.currentTimeMillis();
         int frames = 0;
@@ -113,6 +113,7 @@ public class Game extends JFrame implements Runnable {
     }
 
     public void tick() {
+        screen.CenterMouse();
         screen.update(camera, pixels);
         camera.update(longMap.map);
 
